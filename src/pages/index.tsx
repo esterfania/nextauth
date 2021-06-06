@@ -1,8 +1,5 @@
-import Head from 'next/head';
-import Image from 'next/image';
 import { FormEvent, useContext, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
-import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -19,7 +16,7 @@ export default function Home() {
     await signIn(data);
   }
   return (
-    <form className={styles.container} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <input
         type='email'
         value={email}
