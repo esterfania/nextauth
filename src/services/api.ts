@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
-import { parseCookies } from 'nookies';
-import { setTokens } from '../contexts/AuthContext';
+import { destroyCookie, parseCookies } from 'nookies';
+import { setTokens, signOut } from '../contexts/AuthContext';
 type Request = {
   onSuccess: (token: string) => void;
   onFailed: (err: AxiosError) => void;
@@ -59,8 +59,9 @@ api.interceptors.response.use(
           });
         });
       } else {
-        //deslogar usuario
+        signOut();
       }
     }
+    return Promise.reject(error);
   }
 );
