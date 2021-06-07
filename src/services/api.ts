@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { destroyCookie, parseCookies } from 'nookies';
+import { parseCookies } from 'nookies';
 import { setTokens, signOut } from '../contexts/AuthContext';
 type Request = {
   onSuccess: (token: string) => void;
