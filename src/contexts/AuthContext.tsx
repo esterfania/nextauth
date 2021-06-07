@@ -53,8 +53,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       setUser({ email, permissions, roles });
 
-      api.defaults.headers['Authorization'] = `Bearer ${token}`;
-
       Router.push('/dashboard');
     } catch (err) {
       console.log(err);
@@ -72,7 +70,7 @@ type Tokens = {
   refreshToken: string;
 };
 
-function setTokens({ token, refreshToken }: Tokens) {
+export function setTokens({ token, refreshToken }: Tokens) {
   setCookie(undefined, 'auth.token', token, {
     maxAge: 60 * 60 * 24 * 30, // 30 days
     path: '/',
@@ -81,4 +79,5 @@ function setTokens({ token, refreshToken }: Tokens) {
     maxAge: 60 * 60 * 24 * 30, // 30 days
     path: '/',
   });
+  api.defaults.headers['Authorization'] = `Bearer ${token}`;
 }
